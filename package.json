@@ -1,0 +1,33 @@
+{
+  "name": "smtp-connection-as-promised",
+  "version": "0.0.0",
+  "description": "smtp-connection as promised",
+  "main": "lib/smtp-connection-as-promised.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dex4er/js-smtp-connection-as-promised"
+  },
+  "keywords": [
+    "smtp-connection",
+    "promise"
+  ],
+  "author": "Piotr Roszatycki",
+  "license": "Artistic-2.0",
+  "bugs": {
+    "url": "https://github.com/dex4er/js-smtp-connection-as-promised/issues"
+  },
+  "homepage": "http://github.com/dex4er/js-smtp-connection-as-promised",
+  "dependencies": {
+    "any-promise": "^1.3.0",
+    "livescript": "^1.5.0",
+    "promise-once-events": "0.0.2",
+    "smtp-connection": "^2.11.0"
+  },
+  "devDependencies": {
+    "bluebird": "^3.4.3",
+    "bluebird-co": "^2.1.2",
+    "mailcomposer": "^3.10.0"
+  },
+  "scripts": {},
+  "bin": {}
+}
