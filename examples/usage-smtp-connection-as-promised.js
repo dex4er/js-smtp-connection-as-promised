@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const smtpConnectionAsPromised = require('../lib/smtp-connection-as-promised')
+const SmtpConnectionAsPromised = require('../lib/smtp-connection-as-promised')
 
 const options = {
   host: 'smtp.example.com'
@@ -16,14 +16,14 @@ const envelope = {
   to: 'to@example.net'
 }
 
-const message = "" +
-  "From: from@example.com\n" +
-  "To: to@example.net\n" +
-  "Subject: test\n" +
-  "\n" +
-  "Test\n"
+const message = '' +
+  'From: from@example.com\n' +
+  'To: to@example.net\n' +
+  'Subject: test\n' +
+  '\n' +
+  'Test\n'
 
-const connection = new smtpConnectionAsPromised(options)
+const connection = new SmtpConnectionAsPromised(options)
 
 connection.connect()
 .then(() => {
