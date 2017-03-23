@@ -1,6 +1,6 @@
 {
   "name": "smtp-connection-as-promised",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "smtp-connection as promised",
   "main": "lib/smtp-connection-as-promised.js",
   "repository": {
@@ -12,22 +12,37 @@
     "promise"
   ],
   "author": "Piotr Roszatycki",
-  "license": "Artistic-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dex4er/js-smtp-connection-as-promised/issues"
   },
   "homepage": "http://github.com/dex4er/js-smtp-connection-as-promised",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "dependencies": {
     "any-promise": "^1.3.0",
-    "livescript": "^1.5.0",
-    "promise-once-events": "0.0.2",
-    "smtp-connection": "^2.11.0"
+    "smtp-connection-mit": "^3.2.1"
   },
   "devDependencies": {
-    "bluebird": "^3.4.3",
-    "bluebird-co": "^2.1.2",
-    "mailcomposer": "^3.10.0"
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "mailcomposer": "^4.0.1",
+    "nyc": "^10.1.2",
+    "onchange": "^3.2.1",
+    "promise-socket": "^0.0.1",
+    "smtp-server-as-promised": "^0.0.1",
+    "snazzy": "^6.0.0",
+    "standard": "^9.0.2",
+    "tap": "^10.3.0",
+    "tap-given": "^0.2.0"
   },
-  "scripts": {},
-  "bin": {}
+  "scripts": {
+    "test": "standard --verbose | snazzy && tap test/*.js",
+    "test-coverage": "npm test -- --coverage",
+    "test-onchange-lcovonly": "npm run -s test-coverage -- -R min --coverage-report lcovonly; onchange '**/*.js' -- npm run -s test-coverage -- -R min --coverage-report lcovonly"
+  },
+  "nyc": {
+    "exclude": []
+  }
 }
