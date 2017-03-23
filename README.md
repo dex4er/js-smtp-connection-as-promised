@@ -1,7 +1,13 @@
 ## smtp-connection-as-promised
 
-This module provides promisified version of `smtp-connection-mit` class. The API
-is the same except that all methods returns `Promise` object.
+[![Build Status](https://secure.travis-ci.org/dex4er/js-smtp-connection-as-promised.svg)](http://travis-ci.org/dex4er/js-smtp-connection-as-promised) [![Coverage Status](https://coveralls.io/repos/github/dex4er/js-smtp-connection-as-promised/badge.svg)](https://coveralls.io/github/dex4er/js-smtp-connection-as-promised) [![npm](https://img.shields.io/npm/v/smtp-connection-as-promised.svg)](https://www.npmjs.com/package/smtp-connection-as-promised)
+
+This module provides promisified version of
+[`smtp-connection-mit`](https://www.npmjs.com/package/smtp-connection-mit)
+module. The API is the same as for `smtp-connection-mit`, except that all
+methods return
+[`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+objects.
 
 ### Requirements
 
@@ -29,7 +35,7 @@ const client = new SMTPConnectionAsPromised(options)
 ```
 
 Create new SMTPConnection instance. Options are the same as for original
-`smtp-server-mit` constructor.
+`smtp-connection-mit` constructor.
 
 _Example:_
 
