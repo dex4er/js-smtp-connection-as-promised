@@ -1,6 +1,5 @@
 'use strict'
 
-/* global Feature, Scenario, Given, When, Then, After */
 const t = require('tap')
 require('tap-given')(t)
 
@@ -52,7 +51,7 @@ Feature('Test smtp-connection-as-promised module', () => {
       promise = server.listen(0)
     })
 
-    When('promise for server returns address object', () => {
+    And('promise for server returns address object', () => {
       return promise.then(value => {
         address = value
       })
@@ -70,7 +69,7 @@ Feature('Test smtp-connection-as-promised module', () => {
       })
     })
 
-    When('I connect to the server', () => {
+    And('I connect to the server', () => {
       promise = client.connect()
     })
 
