@@ -2,16 +2,16 @@
 
 [![Build Status](https://secure.travis-ci.org/dex4er/js-smtp-connection-as-promised.svg)](http://travis-ci.org/dex4er/js-smtp-connection-as-promised) [![Coverage Status](https://coveralls.io/repos/github/dex4er/js-smtp-connection-as-promised/badge.svg)](https://coveralls.io/github/dex4er/js-smtp-connection-as-promised) [![npm](https://img.shields.io/npm/v/smtp-connection-as-promised.svg)](https://www.npmjs.com/package/smtp-connection-as-promised)
 
-This module provides promisified version of
-[`smtp-connection-mit`](https://www.npmjs.com/package/smtp-connection-mit)
-module. The API is the same as for `smtp-connection-mit`, except that all
+This module provides promisified version of `smtp-connection` from
+[`nodemailer`](https://www.npmjs.com/package/nodemailer)
+module. The API is the same as for `smtp-connection`, except that all
 methods return
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 objects.
 
 ### Requirements
 
-This module requires Node >= 6.
+This module requires Node >= 5. For Node < 6 `--harmony` flag is required.
 
 ### Installation
 
@@ -21,7 +21,7 @@ npm install smtp-connection-as-promised
 
 ### Usage
 
-`smtp-connection-as-promised` can be used like standard `smtp-connection-mit`
+`smtp-connection-as-promised` can be used like standard `smtp-connection`
 module:
 
 ```js
