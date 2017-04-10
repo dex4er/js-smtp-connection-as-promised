@@ -1,6 +1,6 @@
 'use strict'
 
-const SMTPConnection = require('smtp-connection-mit')
+const SMTPConnection = require('nodemailer/lib/smtp-connection')
 const fs = require('fs')
 const mailcomposer = require('mailcomposer')
 
