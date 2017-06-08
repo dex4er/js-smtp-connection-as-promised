@@ -31,7 +31,7 @@ const SMTPConnectionAsPromised = require('smtp-connection-as-promised')
 #### constructor
 
 ```
-const client = new SMTPConnectionAsPromised(options)
+const connection = new SMTPConnectionAsPromised(options)
 ```
 
 Create new SMTPConnection instance. Options are the same as for original
@@ -40,7 +40,7 @@ Create new SMTPConnection instance. Options are the same as for original
 _Example:_
 
 ```js
-const client = new SMTPConnectionAsPromised({
+const connection = new SMTPConnectionAsPromised({
   opportunisticTLS: true,
   host: 'smtp.example.com',
   port: 25

@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.1 2017-06-08
+
+  * Fixed some typo in README.
+
 ## v0.1.0 2017-04-11
 
   * Uses `smtp-connection` from `nodemailer` on MIT license.
