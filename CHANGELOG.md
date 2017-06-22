@@ -2,7 +2,8 @@
 
 ## v0.1.1 2017-06-08
 
-  * Fixed some typo in README.
+  * Upgraded chai@4.0.2, chai-as-promised@7.0.0, promise-socket@0.0.2,
+    smtp-server-as-promised@0.1.2, tap@10.5.1, tap-given@0.4.1
 
 ## v0.1.0 2017-04-11
 
