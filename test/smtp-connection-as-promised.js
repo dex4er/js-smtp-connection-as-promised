@@ -38,7 +38,10 @@ Feature('Test smtp-connection-as-promised module', () => {
   }
 
   Scenario('Send one mail', () => {
-    let client, server, address, promise
+    let address
+    let client
+    let promise
+    let server
 
     Given('SMTPServerAsPromised object', () => {
       server = new SMTPServerAsPromised({
