@@ -35,7 +35,7 @@ const connection = new SMTPConnectionAsPromised(options)
 ```
 
 Create new SMTPConnection instance. Options are the same as for original
-`smtp-connection-mit` constructor.
+`smtp-connection` constructor.
 
 _Example:_
 
