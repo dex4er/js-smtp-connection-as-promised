@@ -1,6 +1,7 @@
 'use strict'
 
-const SMTPConnectionAsPromised = require('../lib/smtp-connection-as-promised')
+const { SMTPConnectionAsPromised } = require('../lib/smtp-connection-as-promised')
+
 const fs = require('fs')
 const mailcomposer = require('mailcomposer')
 

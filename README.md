@@ -25,7 +25,7 @@ npm install smtp-connection-as-promised
 module:
 
 ```js
-const SMTPConnectionAsPromised = require('smtp-connection-as-promised')
+const { SMTPConnectionAsPromised } = require('smtp-connection-as-promised')
 ```
 
 #### constructor
