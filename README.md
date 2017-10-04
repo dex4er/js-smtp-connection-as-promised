@@ -28,6 +28,12 @@ module:
 const { SMTPConnectionAsPromised } = require('smtp-connection-as-promised')
 ```
 
+_Typescript:_
+
+```ts
+import { SMTPConnectionAsPromised } from 'smtp-connection-as-promised'
+```
+
 #### constructor
 
 ```
