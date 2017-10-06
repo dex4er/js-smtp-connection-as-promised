@@ -5,6 +5,7 @@
   * nodemailer@4.1.3
   * Typescript: reexport symbols from `mail-composer`, `mime-node`,
     `nodemailer-shared` and `smtp-connection`.
+  * Typescript: streams are `NodeJS.ReadableStream`.
 
 ## v1.0.0 2017-10-03
 
