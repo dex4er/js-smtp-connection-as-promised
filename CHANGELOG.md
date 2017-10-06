@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.0 2017-10-06
+
+  * nodemailer@4.1.3
+
 ## v1.0.0 2017-10-03
 
   * Exports also as a class and namespace and the default.
