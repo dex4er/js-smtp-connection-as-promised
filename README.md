@@ -135,19 +135,6 @@ await connection.reset()
 
 Reseting the SMTP session. The `RSET` command is set.
 
-### Promise
-
-This module uses `any-promise` and any ES6 Promise library or polyfill is
-supported.
-
-Ie. `bluebird` can be used as Promise library for this module, if it is
-registered before.
-
-```js
-require('any-promise/register/bluebird')
-const smtpConnectionAsPromised = require('smtp-connection-as-promised')
-```
-
 ### License
 
 Copyright (c) 2016-2017 Piotr Roszatycki <piotr.roszatycki@gmail.com>
