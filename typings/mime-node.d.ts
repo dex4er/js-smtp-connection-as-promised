@@ -1,6 +1,7 @@
 declare module 'nodemailer/lib/mime-node' {
-  import * as SMTPConnection from 'nodemailer/lib/smtp-connection'
   import * as stream from 'stream'
+
+  import SMTPConnection = require('nodemailer/lib/smtp-connection')
 
   namespace MimeNode {
     export interface Addresses {
@@ -87,7 +88,7 @@ declare module 'nodemailer/lib/mime-node' {
      * to Content-Type (if it is text/*). If the value is a Buffer, you need to specify
      * the charset yourself
      */
-    setContent (content: string | Buffer | NodeJS.ReadStream): this
+    setContent (content: string | Buffer | NodeJS.ReadableStream): this
 
     /** Generate the message and return it with a callback */
     build (callback: (err: Error | null, buf: Buffer) => void): void
@@ -101,7 +102,7 @@ declare module 'nodemailer/lib/mime-node' {
      * Streams the rfc2822 message from the current node. If this is a root node,
      * mandatory header fields are set if missing (Date, Message-Id, MIME-Version)
      */
-    createReadStream (options?: stream.ReadableOptions): NodeJS.ReadStream
+    createReadStream (options?: stream.ReadableOptions): NodeJS.ReadableStream
 
     /**
      * Appends a transform stream object to the transforms list. Final output
@@ -115,9 +116,9 @@ declare module 'nodemailer/lib/mime-node' {
      *
      *   processFunc(input) -> outputStream
      */
-    processFunc (processFunc: (outputStream: NodeJS.ReadStream) => NodeJS.ReadStream): void
+    processFunc (processFunc: (outputStream: NodeJS.ReadableStream) => NodeJS.ReadableStream): void
 
-    stream (outputStream: NodeJS.ReadStream, options: stream.ReadableOptions, done: (err: Error | null) => void): void
+    stream (outputStream: NodeJS.ReadableStream, options: stream.ReadableOptions, done: (err: Error | null) => void): void
 
     /** Sets envelope to be used instead of the generated one */
     setEnvelope (envelope: SMTPConnection.Envelope): this
@@ -129,7 +130,7 @@ declare module 'nodemailer/lib/mime-node' {
     getEnvelope (): MimeNode.Envelope
 
     /** Sets pregenerated content that will be used as the output of this node */
-    setRaw (raw: string | Buffer | NodeJS.ReadStream): this
+    setRaw (raw: string | Buffer | NodeJS.ReadableStream): this
   }
 
   export = MimeNode

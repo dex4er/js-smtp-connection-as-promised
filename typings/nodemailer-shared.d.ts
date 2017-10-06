@@ -1,7 +1,7 @@
 declare module 'nodemailer/lib/shared' {
-  type LoggerLevel = 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal'
+  export type LoggerLevel = 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal'
 
-  interface Logger {
+  export interface Logger {
     level (level: LoggerLevel): void
     trace (...params: any[]): void
     debug (...params: any[]): void
@@ -11,15 +11,12 @@ declare module 'nodemailer/lib/shared' {
     fatal (...params: any[]): void
   }
 
-  type Options = { [key: string]: string }
-  type ErrValueCallback = (err: Error | null, value: any) => any
-
   export function parseConnectionUrl (url: string): object
-  export function getLogger (options?: Options, defaults?: Options): Logger
+  export function getLogger (options?: { [key: string]: string }, defaults?: { [key: string]: string }): Logger
   export function callbackPromise (resolve: (...args: any[]) => void, reject: (err: Error) => void): () => void
-  export function resolveContent (data: object | any[], key: string | number, callback: ErrValueCallback): Promise<any>
+  export function resolveContent (data: object | any[], key: string | number, callback: (err: Error | null, value: any) => any): Promise<any>
   export function assign (target: object, ...sources: object[]): object
   export function encodeXText (str: string): string
-  export function resolveStream (stream: NodeJS.ReadableStream, callback: ErrValueCallback): void
+  export function resolveStream (stream: NodeJS.ReadableStream, callback: (err: Error | null, value: any) => any): void
   export function createDefaultLogger (levels: LoggerLevel[]): Logger
 }

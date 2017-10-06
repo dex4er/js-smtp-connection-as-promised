@@ -3,11 +3,12 @@ declare module 'nodemailer/lib/smtp-connection' {
   import * as net from 'net'
   import * as tls from 'tls'
   import * as shared from 'nodemailer/lib/shared'
-  import * as MimeNode from 'nodemailer/lib/mime-node'
+
+  import MimeNode = require('nodemailer/lib/mime-node')
+
+  type ms = number
 
   namespace SMTPConnection {
-    type ms = number
-
     export interface Credentials {
       /** the username */
       user: string

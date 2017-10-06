@@ -3,6 +3,8 @@
 ## v1.1.0 2017-10-06
 
   * nodemailer@4.1.3
+  * Typescript: reexport symbols from `mail-composer`, `mime-node`,
+    `nodemailer-shared` and `smtp-connection`.
 
 ## v1.0.0 2017-10-03
 
