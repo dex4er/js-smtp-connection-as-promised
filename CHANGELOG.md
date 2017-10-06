@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.1 2017-10-06
+
+  * Typescript: reference additional modules in our typings file.
+
 ## v1.1.0 2017-10-06
 
   * nodemailer@4.1.3
