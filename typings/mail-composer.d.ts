@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 declare module 'nodemailer/lib/mail-composer' {
   import { URL } from 'url'
 

@@ -2,6 +2,10 @@
 
 ## v2.0.1 2017-10-09
 
+  * Do not export external typings.
+
+## v2.0.1 2017-10-09
+
   * Typescript: depends on `smtp-server-as-promised` and use its typings for
     `nodemailer-shared` temporarily until `@types/nodemailer` and
     `@types/smtp-server` will be ready.

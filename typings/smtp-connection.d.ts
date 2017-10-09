@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 declare module 'nodemailer/lib/smtp-connection' {
   import * as events from 'events'
   import * as net from 'net'

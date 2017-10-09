@@ -1,6 +1,6 @@
 {
   "name": "smtp-connection-as-promised",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "smtp-connection as promised",
   "main": "lib/smtp-connection-as-promised.js",
   "typings": "lib/smtp-connection-as-promised.d.ts",
@@ -24,7 +24,7 @@
   "dependencies": {
     "nodemailer": "^4.1.3",
     "promise-readable": "^2.0.0",
-    "smtp-server-as-promised": "^2.0.0"
+    "smtp-server-as-promised": "^2.0.2"
   },
   "devDependencies": {
     "@types/node": "^8.0.33",

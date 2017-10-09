@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 declare module 'nodemailer/lib/mime-node' {
   import * as stream from 'stream'
 
