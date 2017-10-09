@@ -1,7 +1,7 @@
 /// <reference types="node" />
 /// <reference path="../typings/mime-node.d.ts" />
 /// <reference path="../typings/mail-composer.d.ts" />
-/// <reference path="../typings/nodemailer-shared.d.ts" />
+/// <reference path="../node_modules/smtp-server-as-promised/typings/nodemailer-shared.d.ts" />
 /// <reference path="../typings/smtp-connection.d.ts" />
 
 import { PromiseReadable } from 'promise-readable'
