@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.0.3 2017-10-20
+
+  * Typescript: typings for nodemailer from DefinitelyTyped; data stream is
+    `Readable`; symbols from nodemailer are not re-exported.
+
 ## v2.0.2 2017-10-09
 
   * Do not export external typings.

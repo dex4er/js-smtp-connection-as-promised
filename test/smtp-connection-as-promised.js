@@ -40,6 +40,7 @@ Feature('Test smtp-connection-as-promised module', () => {
   Scenario('Send one mail', () => {
     let address
     let client
+    let info
     let promise
     let server
 
@@ -55,7 +56,7 @@ Feature('Test smtp-connection-as-promised module', () => {
     })
 
     And('promise for server returns address object', () => {
-      return promise.then(value => {
+      return promise.then((value) => {
         address = value
       })
     })
@@ -89,15 +90,15 @@ Feature('Test smtp-connection-as-promised module', () => {
     })
 
     When('I send the message envelope and body', () => {
-      promise = client.send({from, to}, rfc2822Message)
+      return client.send({from, to}, rfc2822Message).then((result) => {
+        info = result
+      })
     })
 
-    Then('promise for send method is fulfilled', done => {
-      return promise.should.eventually.deep.equal({
-        accepted: [ 'recipient@example.net' ],
-        rejected: [],
-        response: '250 OK: message queued'
-      })
+    Then('promise for send method is fulfilled', () => {
+      info.should.have.property('accepted').that.deep.equals(['recipient@example.net'])
+      info.should.have.property('rejected').that.deep.equals([])
+      info.should.have.property('response').that.equals('250 OK: message queued')
     })
 
     When('I quit the SMTP session', () => {
