@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.0.4 2017-10-21
+
+  * Typescript: Re-export types from nodemailer which are used directly in
+    this API.
+
 ## v2.0.3 2017-10-20
 
   * Typescript: typings for nodemailer from DefinitelyTyped; data stream is

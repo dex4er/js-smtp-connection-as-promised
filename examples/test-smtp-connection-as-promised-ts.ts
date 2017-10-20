@@ -2,9 +2,8 @@
 
 import * as fs from 'fs'
 import MailComposer = require('nodemailer/lib/mail-composer')
-import SMTPConnection = require('nodemailer/lib/smtp-connection')
 
-import { SMTPConnectionAsPromised, SMTPConnectionAsPromisedOptions } from '../lib/smtp-connection-as-promised'
+import { SMTPConnectionAsPromised, SMTPConnectionAsPromisedOptions, SMTPConnectionEnvelope } from '../lib/smtp-connection-as-promised'
 
 interface ArgvOptions {
   [key: string]: string
@@ -34,7 +33,7 @@ async function main () {
     : !options.data ? new MailComposer({ from, to }).compile().createReadStream()
     : fs.readFileSync(options.data)
 
-  const envelope: SMTPConnection.Envelope = { from, to: [to] }
+  const envelope: SMTPConnectionEnvelope = { from, to: [to] }
 
   const connection = new SMTPConnectionAsPromised(options)
 
