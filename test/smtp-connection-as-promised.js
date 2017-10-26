@@ -30,7 +30,7 @@ Feature('Test smtp-connection-as-promised module', () => {
   function onAuth (auth, session) {
     return new Promise((resolve, reject) => {
       if (auth.method === 'PLAIN' && auth.username === user && auth.password === pass) {
-        resolve({user: auth.username})
+        resolve({ user: auth.username })
       } else {
         reject(new Error('Invalid username or password'))
       }
@@ -82,7 +82,7 @@ Feature('Test smtp-connection-as-promised module', () => {
     })
 
     When('I login to the server', () => {
-      promise = client.login({user, pass})
+      promise = client.login({ user, pass })
     })
 
     Then('promise for login method is fulfilled', () => {
@@ -90,7 +90,7 @@ Feature('Test smtp-connection-as-promised module', () => {
     })
 
     When('I send the message envelope and body', () => {
-      return client.send({from, to}, rfc2822Message).then((result) => {
+      return client.send({ from, to }, rfc2822Message).then((result) => {
         info = result
       })
     })

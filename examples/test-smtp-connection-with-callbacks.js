@@ -18,7 +18,7 @@ const { from, to, user, pass } = options
 
 const message = options.data === '-' ? process.stdin
   : !options.data ? new MailComposer({ from, to }).compile().createReadStream()
-  : fs.readFileSync(options.data)
+    : fs.readFileSync(options.data)
 
 const envelope = { from, to: [to] }
 
@@ -29,7 +29,7 @@ connection.on('error', console.error)
 connection.connect(user && pass ? doLogin : doSend)
 
 function doLogin () {
-  connection.login({user, pass}, doSend)
+  connection.login({ user, pass }, doSend)
 }
 
 function doSend () {

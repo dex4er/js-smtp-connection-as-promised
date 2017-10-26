@@ -1,4 +1,5 @@
 /// <reference types="node" />
+/// <reference types="nodemailer" />
 
 import MailComposer = require('nodemailer/lib/mail-composer')
 import MimeNode = require('nodemailer/lib/mime-node')

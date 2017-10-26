@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.5 2017-10-26
+
+  * Typescript: use typings from DefinitelyTyped.
+
 ## v2.0.4 2017-10-21
 
   * Typescript: Re-export types from nodemailer which are used directly in
