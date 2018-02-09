@@ -1,6 +1,6 @@
 {
   "name": "smtp-connection-as-promised",
-  "version": "2.0.5",
+  "version": "3.0.0",
   "description": "smtp-connection as promised",
   "main": "lib/smtp-connection-as-promised.js",
   "typings": "lib/smtp-connection-as-promised.d.ts",
@@ -22,21 +22,25 @@
     "node": ">=5.0.0"
   },
   "dependencies": {
-    "nodemailer": "^4.2.0",
-    "promise-readable": "^2.1.0",
-    "smtp-server-as-promised": "^2.0.3"
+    "nodemailer": "^4.4.1",
+    "smtp-server-as-promised": "^2.0.4",
+    "socks": "^2.1.2"
   },
   "devDependencies": {
-    "@types/node": "^8.0.46",
-    "@types/nodemailer": "^4.2.0",
+    "@types/node": "^8.0.58",
+    "@types/nodemailer": "^4.3.1",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "mailcomposer": "^4.0.2",
+    "promise-readable": "^2.1.0",
     "promise-socket": "^2.0.2",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3",
-    "tap": "^10.7.2",
-    "tap-given": "^0.6.0"
+    "tap": "^11.0.0",
+    "tap-given": "^0.6.0",
+    "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.7.1"
   },
   "scripts": {
     "pretest": "standard --verbose | snazzy",

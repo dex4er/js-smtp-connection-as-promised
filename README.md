@@ -3,9 +3,8 @@
 [![Build Status](https://secure.travis-ci.org/dex4er/js-smtp-connection-as-promised.svg)](http://travis-ci.org/dex4er/js-smtp-connection-as-promised) [![Coverage Status](https://coveralls.io/repos/github/dex4er/js-smtp-connection-as-promised/badge.svg)](https://coveralls.io/github/dex4er/js-smtp-connection-as-promised) [![npm](https://img.shields.io/npm/v/smtp-connection-as-promised.svg)](https://www.npmjs.com/package/smtp-connection-as-promised)
 
 This module provides promisified version of `smtp-connection` from
-[`nodemailer`](https://www.npmjs.com/package/nodemailer)
-module. The API is the same as for `smtp-connection`, except that all
-methods return
+[`nodemailer`](https://www.npmjs.com/package/nodemailer) module. The API is the
+same as for `smtp-connection`, except that all methods return
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 objects.
 
@@ -25,18 +24,18 @@ npm install smtp-connection-as-promised
 module:
 
 ```js
-const { SMTPConnectionAsPromised } = require('smtp-connection-as-promised')
+const SMTPConnectionAsPromised = require('smtp-connection-as-promised')
 ```
 
 _Typescript:_
 
 ```ts
-import { SMTPConnectionAsPromised } from 'smtp-connection-as-promised'
+import SMTPConnectionAsPromised from 'smtp-connection-as-promised'
 ```
 
 #### constructor
 
-```
+```js
 const connection = new SMTPConnectionAsPromised(options)
 ```
 
@@ -137,6 +136,6 @@ Reseting the SMTP session. The `RSET` command is set.
 
 ### License
 
-Copyright (c) 2016-2017 Piotr Roszatycki <piotr.roszatycki@gmail.com>
+Copyright (c) 2016-2018 Piotr Roszatycki <piotr.roszatycki@gmail.com>
 
 [MIT](https://opensource.org/licenses/MIT)

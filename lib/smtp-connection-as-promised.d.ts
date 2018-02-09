@@ -23,7 +23,7 @@ export class SMTPConnectionAsPromised {
 
   connect (): Promise<void>
   login (auth: SMTPConnectionAuthenticationCredentials | SMTPConnectionAuthenticationOAuth2 | SMTPConnectionCredentials): Promise<void>
-  send (envelope: SMTPConnectionEnvelope, message: string | Buffer | Readable | PromiseReadable<Readable>): Promise<SMTPConnectionSentMessageInfo>
+  send (envelope: SMTPConnectionEnvelope, message: string | Buffer | Readable): Promise<SMTPConnectionSentMessageInfo>
   quit (): Promise<void>
   close (): Promise<void>
   reset (): Promise<void>
