@@ -1,4 +1,4 @@
-## smtp-connection-as-promised
+# smtp-connection-as-promised
 
 [![Build Status](https://secure.travis-ci.org/dex4er/js-smtp-connection-as-promised.svg)](http://travis-ci.org/dex4er/js-smtp-connection-as-promised) [![Coverage Status](https://coveralls.io/repos/github/dex4er/js-smtp-connection-as-promised/badge.svg)](https://coveralls.io/github/dex4er/js-smtp-connection-as-promised) [![npm](https://img.shields.io/npm/v/smtp-connection-as-promised.svg)](https://www.npmjs.com/package/smtp-connection-as-promised)
 
@@ -8,17 +8,17 @@ same as for `smtp-connection`, except that all methods return
 [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 objects.
 
-### Requirements
+## Requirements
 
 This module requires Node >= 5. For Node < 6 `--harmony` flag is required.
 
-### Installation
+## Installation
 
 ```shell
 npm install smtp-connection-as-promised
 ```
 
-### Usage
+## Usage
 
 `smtp-connection-as-promised` can be used like standard `smtp-connection`
 module:
@@ -33,7 +33,7 @@ _Typescript:_
 import SMTPConnectionAsPromised from 'smtp-connection-as-promised'
 ```
 
-#### constructor
+### constructor
 
 ```js
 const connection = new SMTPConnectionAsPromised(options)
@@ -52,7 +52,7 @@ const connection = new SMTPConnectionAsPromised({
 })
 ```
 
-#### connect
+### connect
 
 ```js
 await connection.connect()
@@ -61,7 +61,7 @@ console.log(connection.secure)
 
 Establish the connection and set the `secure` property.
 
-#### login
+### login
 
 ```js
 await connection.login(auth)
@@ -81,7 +81,7 @@ await connection.login({
 })
 ```
 
-#### send
+### send
 
 ```js
 const info = await connection.send(envelope, message)
@@ -108,7 +108,7 @@ const info = await connection.send(envelope, message)
 console.log(info.response)
 ```
 
-#### quit
+### quit
 
 ```js
 const hadError = await connection.quit()
@@ -118,7 +118,7 @@ Graceful SMTP session ending. The `QUIT` command is sent. `hadError` is `true`
 if the socket was closed due to a transmission error and `null` when was
 already closed.
 
-#### close
+### close
 
 ```js
 const hadError = await connection.close()
@@ -126,7 +126,7 @@ const hadError = await connection.close()
 
 Disconnecting of SMTP session.
 
-#### reset
+### reset
 
 ```js
 await connection.reset()
@@ -134,7 +134,7 @@ await connection.reset()
 
 Reseting the SMTP session. The `RSET` command is set.
 
-### License
+## License
 
 Copyright (c) 2016-2018 Piotr Roszatycki <piotr.roszatycki@gmail.com>
 
