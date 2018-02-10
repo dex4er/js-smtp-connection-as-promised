@@ -1,11 +1,7 @@
 /// <reference types="node" />
 /// <reference types="nodemailer" />
 
-import MailComposer from 'nodemailer/lib/mail-composer'
-import MimeNode from 'nodemailer/lib/mime-node'
-import shared from 'nodemailer/lib/shared'
 import SMTPConnection from 'nodemailer/lib/smtp-connection'
-import PromiseReadable from 'promise-readable'
 import { Readable } from 'stream'
 
 export type SMTPConnectionAsPromisedOptions = SMTPConnection.Options
