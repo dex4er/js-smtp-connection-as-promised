@@ -6,10 +6,8 @@
   "jsRules": {},
   "rules": {
     "interface-name": false,
-    "max-line-length": [true, 300],
-    "no-conditional-assignment": false,
+    "max-line-length": false,
     "no-console": [true, "log"],
-    "object-literal-sort-keys": false,
-    "triple-equals": [true, "allow-null-check"]
+    "object-literal-sort-keys": false
   }
 }

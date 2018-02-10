@@ -5,7 +5,7 @@
 const fs = require('fs')
 const MailComposer = require('nodemailer/lib/mail-composer')
 
-const { SMTPConnectionAsPromised } = require('../lib/smtp-connection-as-promised')
+const SMTPConnectionAsPromised = require('../lib/smtp-connection-as-promised')
 
 async function main () {
   // Usage: node test-smtp-client.js host=localhost port=25 ignoreTLS=true user=u pass=p from=a@example.com to=b@example.net data=-

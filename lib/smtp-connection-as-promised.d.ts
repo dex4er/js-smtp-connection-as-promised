@@ -1,11 +1,11 @@
 /// <reference types="node" />
 /// <reference types="nodemailer" />
 
-import MailComposer = require('nodemailer/lib/mail-composer')
-import MimeNode = require('nodemailer/lib/mime-node')
-import * as shared from 'nodemailer/lib/shared'
-import SMTPConnection = require('nodemailer/lib/smtp-connection')
-import { PromiseReadable } from 'promise-readable'
+import MailComposer from 'nodemailer/lib/mail-composer'
+import MimeNode from 'nodemailer/lib/mime-node'
+import shared from 'nodemailer/lib/shared'
+import SMTPConnection from 'nodemailer/lib/smtp-connection'
+import PromiseReadable from 'promise-readable'
 import { Readable } from 'stream'
 
 export type SMTPConnectionAsPromisedOptions = SMTPConnection.Options
@@ -28,3 +28,5 @@ export class SMTPConnectionAsPromised {
   close (): Promise<void>
   reset (): Promise<void>
 }
+
+export default SMTPConnectionAsPromised
