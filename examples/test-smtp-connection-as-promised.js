@@ -21,7 +21,7 @@ async function main () {
 
   const message = options.data === '-' ? process.stdin
     : !options.data ? new MailComposer({ from, to }).compile().createReadStream()
-    : fs.readFileSync(options.data)
+      : fs.readFileSync(options.data)
 
   const envelope = { from, to: [to] }
 

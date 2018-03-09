@@ -14,8 +14,6 @@ module.exports = {
     When: true
   },
   rules: {
-    indent: ['error', 2, { flatTernaryExpressions: true, MemberExpression: 1, SwitchCase: 1 }],
-    'no-multi-spaces': ['error', { ignoreEOLComments: true }],
-    'one-var-declaration-per-line': 2
+    indent: ['error', 2, { MemberExpression: 1, SwitchCase: 1 }],
   }
 }
