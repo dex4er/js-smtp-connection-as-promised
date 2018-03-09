@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.0.1 2018-03-09
+
+* Typescript: use @types/nodemailer@4.6.0.
+
 ## v3.0.0 2018-02-09
 
 * Removed `PromiseReadable` support for `send` method.
