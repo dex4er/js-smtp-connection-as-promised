@@ -1,6 +1,8 @@
 # smtp-connection-as-promised
 
+<!-- markdownlint-disable MD013 -->
 [![Build Status](https://secure.travis-ci.org/dex4er/js-smtp-connection-as-promised.svg)](http://travis-ci.org/dex4er/js-smtp-connection-as-promised) [![Coverage Status](https://coveralls.io/repos/github/dex4er/js-smtp-connection-as-promised/badge.svg)](https://coveralls.io/github/dex4er/js-smtp-connection-as-promised) [![npm](https://img.shields.io/npm/v/smtp-connection-as-promised.svg)](https://www.npmjs.com/package/smtp-connection-as-promised)
+<!-- markdownlint-enable MD013 -->
 
 This module provides promisified version of `smtp-connection` from
 [`nodemailer`](https://www.npmjs.com/package/nodemailer) module. The API is the
