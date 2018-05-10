@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.1.1 2018-05-10
+
+* Bugfix for tests.
+
 ## v3.1.0 2018-05-10
 
 * Guard `reset` method.

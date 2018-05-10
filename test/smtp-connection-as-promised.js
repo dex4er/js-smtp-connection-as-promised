@@ -106,7 +106,7 @@ Feature('Test smtp-connection-as-promised module', () => {
     })
 
     Then('promise for quit method is fulfilled', () => {
-      return promise.should.eventually.be.fulfilled
+      return promise.should.be.fulfilled
     })
 
     When('I quit the SMTP session', () => {
