@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.2.0 2018-05-10
+
+* Wait for `end` event instead of `close`.
+* Methods `quit` and `close` resolve to `undefined` value.
+
 ## v3.1.1 2018-05-10
 
 * Bugfix for tests.
