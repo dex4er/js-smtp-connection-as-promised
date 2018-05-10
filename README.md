@@ -20,6 +20,12 @@ This module requires Node >= 5. For Node < 6 `--harmony` flag is required.
 npm install smtp-connection-as-promised
 ```
 
+_Typescript:_
+
+```shell
+npm install smtp-connection-as-promised @types/node @types/nodemailer
+```
+
 ## Usage
 
 `smtp-connection-as-promised` can be used like standard `smtp-connection`
