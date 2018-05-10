@@ -101,6 +101,14 @@ Feature('Test smtp-connection-as-promised module', () => {
       info.should.have.property('response').that.equals('250 OK: message queued')
     })
 
+    When('I reset the SMTP session', () => {
+      promise = client.reset()
+    })
+
+    Then('promise for quit method is fulfilled', () => {
+      return promise.should.eventually.be.fulfilled
+    })
+
     When('I quit the SMTP session', () => {
       promise = client.quit()
     })

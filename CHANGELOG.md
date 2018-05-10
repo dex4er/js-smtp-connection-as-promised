@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.1.0 2018-05-10
+
+* Guard `reset` method.
+
 ## v3.0.3 2018-04-11
 
 * Check README with linter.
