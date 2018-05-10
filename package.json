@@ -30,7 +30,6 @@
     "@types/nodemailer": "^4.6.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
-    "mailcomposer": "^4.0.2",
     "markdownlint-cli": "^0.8.1",
     "promise-readable": "^3.1.5",
     "promise-socket": "^3.0.2",
