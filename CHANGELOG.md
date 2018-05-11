@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.3.0 2018-05-11
+
+* Wait for `close` event but only when connection and socket are not destroyed.
+
 ## v3.2.0 2018-05-10
 
 * Wait for `end` event instead of `close`.
