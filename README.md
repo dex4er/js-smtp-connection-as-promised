@@ -12,7 +12,7 @@ objects.
 
 ## Requirements
 
-This module requires Node >= 5. For Node < 6 `--harmony` flag is required.
+This module requires Node >= 6.
 
 ## Installation
 
@@ -20,19 +20,28 @@ This module requires Node >= 5. For Node < 6 `--harmony` flag is required.
 npm install smtp-connection-as-promised
 ```
 
-_Typescript:_
+_Additionally for Typescript:_
 
 ```shell
 npm install smtp-connection-as-promised @types/node @types/nodemailer
 ```
 
+Transpiling this module with own settings in `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "smtp-connection-as-promised": ["node_modules/smtp-connection-as-promised/src/smtp-connection-as-promised"]
+    }
+  }
+}
+```
+
 ## Usage
 
-`smtp-connection-as-promised` can be used like standard `smtp-connection`
-module:
-
 ```js
-const SMTPConnectionAsPromised = require('smtp-connection-as-promised')
+const { SMTPConnectionAsPromised } = require('smtp-connection-as-promised')
 ```
 
 _Typescript:_
@@ -141,6 +150,14 @@ await connection.reset()
 ```
 
 Reseting the SMTP session. The `RSET` command is set.
+
+### destroy
+
+```js
+await connection.destroy()
+```
+
+Manually free resources taken by connection.
 
 ## License
 

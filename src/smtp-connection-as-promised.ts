@@ -1,21 +1,36 @@
-'use strict'
+/// <reference types="node" />
+/// <reference types="nodemailer" />
 
-const SMTPConnection = require('nodemailer/lib/smtp-connection')
+import SMTPConnection from 'nodemailer/lib/smtp-connection'
+import { Readable } from 'stream'
 
-class SMTPConnectionAsPromised {
-  constructor (options) {
-    options = options || {}
+export interface SMTPConnectionAsPromisedOptions extends SMTPConnection.Options {}
+
+export interface SMTPConnectionAuthenticationCredentials extends SMTPConnection.AuthenticationCredentials {}
+export interface SMTPConnectionAuthenticationOAuth2 extends SMTPConnection.AuthenticationOAuth2 {}
+export interface SMTPConnectionCredentials extends SMTPConnection.Credentials {}
+export interface SMTPConnectionEnvelope extends SMTPConnection.Envelope {}
+export interface SMTPConnectionSentMessageInfo extends SMTPConnection.SentMessageInfo {}
+
+export class SMTPConnectionAsPromised {
+  connection: SMTPConnection
+  secure?: boolean
+
+  protected destroyed?: boolean
+  protected endHandler?: () => void
+
+  constructor (options: SMTPConnectionAsPromisedOptions) {
     this.connection = new SMTPConnection(options)
   }
 
-  connect () {
+  connect (): Promise<void> {
     return new Promise((resolve, reject) => {
       const endHandler = () => {
         this.connection.removeListener('error', errorHandler)
         reject(new Error('Cannot connect - smtp connection is already ended.'))
       }
 
-      const errorHandler = (err) => {
+      const errorHandler = (err: Error) => {
         this.connection.removeListener('end', endHandler)
         reject(err)
       }
@@ -30,11 +45,22 @@ class SMTPConnectionAsPromised {
 
       this.connection.once('end', endHandler)
       this.connection.once('error', errorHandler)
+
+      if (!this.endHandler) {
+        this.destroyed = false
+
+        this.endHandler = () => {
+          this.destroyed = true
+        }
+
+        this.connection.once('end', this.endHandler)
+      }
+
       this.connection.connect(connectHandler)
     })
   }
 
-  login (auth) {
+  login (auth: SMTPConnectionAuthenticationCredentials | SMTPConnectionAuthenticationOAuth2 | SMTPConnectionCredentials): Promise<void> {
     return new Promise((resolve, reject) => {
       const endHandler = () => {
         reject(new Error('Cannot send - smtp connection is already ended.'))
@@ -50,14 +76,14 @@ class SMTPConnectionAsPromised {
     })
   }
 
-  send (envelope, message) {
+  send (envelope: SMTPConnectionEnvelope, message: string | Buffer | Readable): Promise<SMTPConnectionSentMessageInfo> {
     return new Promise((resolve, reject) => {
       const endHandler = () => {
         this.connection.removeListener('error', errorHandler)
         reject(new Error('Cannot send - smtp connection is already ended.'))
       }
 
-      const errorHandler = (err) => {
+      const errorHandler = (err: Error) => {
         this.connection.removeListener('end', endHandler)
         reject(err)
       }
@@ -65,7 +91,8 @@ class SMTPConnectionAsPromised {
       this.connection.once('end', endHandler)
       this.connection.once('error', errorHandler)
 
-      this.connection.send(envelope, message, (err, info) => {
+      // TODO: wait for https://github.com/DefinitelyTyped/DefinitelyTyped/pull/28747/
+      this.connection.send(envelope, message as any, (err: Error | null, info: SMTPConnection.SentMessageInfo) => {
         this.connection.removeListener('end', endHandler)
         this.connection.removeListener('error', errorHandler)
         if (err) reject(err)
@@ -74,10 +101,10 @@ class SMTPConnectionAsPromised {
     })
   }
 
-  quit () {
+  quit (): Promise<void> {
     return new Promise((resolve) => {
       const socket = this.connection._socket
-      if (this.connection && !this.connection._destroyed) {
+      if (this.connection && !this.destroyed) {
         if (socket && !socket.destroyed) {
           socket.once('close', resolve)
           this.connection.quit()
@@ -91,10 +118,10 @@ class SMTPConnectionAsPromised {
     })
   }
 
-  close () {
+  close (): Promise<void> {
     return new Promise((resolve) => {
       const socket = this.connection._socket
-      if (this.connection && !this.connection._destroyed) {
+      if (this.connection && !this.destroyed) {
         if (socket && !socket.destroyed) {
           socket.once('close', resolve)
           this.connection.close()
@@ -108,14 +135,14 @@ class SMTPConnectionAsPromised {
     })
   }
 
-  reset () {
+  reset (): Promise<void> {
     return new Promise((resolve, reject) => {
       const endHandler = () => {
         this.connection.removeListener('error', errorHandler)
         reject(new Error('Cannot send - smtp connection is already ended.'))
       }
 
-      const errorHandler = (err) => {
+      const errorHandler = (err: Error) => {
         this.connection.removeListener('end', endHandler)
         reject(err)
       }
@@ -131,8 +158,21 @@ class SMTPConnectionAsPromised {
       })
     })
   }
+
+  destroy (): Promise<void> {
+    const cleanup = () => {
+      this.connection.removeAllListeners('end')
+      this.connection.removeAllListeners('error')
+      this.endHandler = undefined
+      this.destroyed = true
+    }
+    if (!this.destroyed) {
+      return this.close().then(() => cleanup())
+    } else {
+      cleanup()
+      return Promise.resolve()
+    }
+  }
 }
 
-SMTPConnectionAsPromised.SMTPConnectionAsPromised = SMTPConnectionAsPromised
-
-module.exports = SMTPConnectionAsPromised
+export default SMTPConnectionAsPromised

@@ -3,7 +3,7 @@
 import fs from 'fs'
 import MailComposer from 'nodemailer/lib/mail-composer'
 
-import { SMTPConnectionAsPromised, SMTPConnectionAsPromisedOptions, SMTPConnectionEnvelope } from '../lib/smtp-connection-as-promised'
+import { SMTPConnectionAsPromised, SMTPConnectionAsPromisedOptions, SMTPConnectionEnvelope } from '../src/smtp-connection-as-promised'
 
 interface ArgvOptions {
   [key: string]: string
@@ -49,6 +49,8 @@ async function main (): Promise<void> {
     console.error(e)
     await connection.close()
   }
+
+  await connection.destroy()
 }
 
 void main().catch(console.error)

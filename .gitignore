@@ -1,11 +1,16 @@
 *-ts.js
 
+*.gz
 *.tgz
 
 ts-node-*
 
+/lib/
+/test/mocha.opts
+
 /coverage/
 /node_modules/
+/out/
 
 /.nyc_output/
 
@@ -16,4 +21,5 @@ ts-node-*
 /yarn.lock
 /yarn-error.log
 
+/.idea
 /.vscode

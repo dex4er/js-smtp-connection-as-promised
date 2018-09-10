@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.0.0 2018-09-10
+
+* Rewritten in Typescript.
+* Requires Node >= 6
+* Changed syntax for import.
+
 ## v3.3.0 2018-05-11
 
 * Wait for `close` event but only when connection and socket are not destroyed.
