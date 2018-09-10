@@ -20,7 +20,7 @@ Feature('Test smtp-connection-as-promised module', () => {
     'Test' + crlf +
     '.' + crlf
 
-  async function onAuth (auth: SMTPServerAuthentication, _session: SMTPServerSession): Promise<SMTPServerAuthenticationResponse> {
+  async function onAuth (auth: SMTPServerAuthentication, session: SMTPServerSession): Promise<SMTPServerAuthenticationResponse> {
     if (auth.method === 'PLAIN' && auth.username === user && auth.password === pass) {
       return { user: auth.username }
     } else {
@@ -109,7 +109,7 @@ Feature('Test smtp-connection-as-promised module', () => {
     })
 
     After(async () => {
-      await client.close()
+      await client.destroy()
     })
 
     After(async () => {
