@@ -16,7 +16,7 @@ export class SMTPConnectionAsPromised {
   connection: SMTPConnection
   secure?: boolean
 
-  protected destroyed?: boolean
+  protected ended?: boolean
   protected endHandler?: () => void
 
   constructor (options: SMTPConnectionAsPromisedOptions) {
@@ -47,10 +47,10 @@ export class SMTPConnectionAsPromised {
       this.connection.once('error', errorHandler)
 
       if (!this.endHandler) {
-        this.destroyed = false
+        this.ended = false
 
         this.endHandler = () => {
-          this.destroyed = true
+          this.ended = true
         }
 
         this.connection.once('end', this.endHandler)
@@ -104,7 +104,7 @@ export class SMTPConnectionAsPromised {
   quit (): Promise<void> {
     return new Promise((resolve) => {
       const socket = this.connection._socket
-      if (this.connection && !this.destroyed) {
+      if (this.connection && !this.ended) {
         if (socket && !socket.destroyed) {
           socket.once('close', resolve)
           this.connection.quit()
@@ -121,7 +121,7 @@ export class SMTPConnectionAsPromised {
   close (): Promise<void> {
     return new Promise((resolve) => {
       const socket = this.connection._socket
-      if (this.connection && !this.destroyed) {
+      if (this.connection && !this.ended) {
         if (socket && !socket.destroyed) {
           socket.once('close', resolve)
           this.connection.close()
@@ -161,12 +161,13 @@ export class SMTPConnectionAsPromised {
 
   destroy (): Promise<void> {
     const cleanup = () => {
-      this.connection.removeAllListeners('end')
-      this.connection.removeAllListeners('error')
-      this.endHandler = undefined
-      this.destroyed = true
+      this.ended = true
+      if (this.endHandler) {
+        this.connection.removeListener('end', this.endHandler)
+        this.endHandler = undefined
+      }
     }
-    if (!this.destroyed) {
+    if (!this.ended) {
       return this.close().then(() => cleanup())
     } else {
       cleanup()
