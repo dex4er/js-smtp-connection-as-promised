@@ -47,7 +47,7 @@
     "promise-readable": "^3.1.5",
     "promise-socket": "^3.1.1",
     "rimraf": "^2.6.2",
-    "smtp-server-as-promised": "^4.0.0",
+    "smtp-server-as-promised": "^4.1.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-config-standard": "^8.0.1",

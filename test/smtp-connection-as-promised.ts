@@ -113,7 +113,7 @@ Feature('Test smtp-connection-as-promised module', () => {
     })
 
     After(async () => {
-      await server.close()
+      await server.destroy()
     })
   })
 })
