@@ -128,17 +128,15 @@ console.log(info.response)
 ### quit
 
 ```js
-const hadError = await connection.quit()
+await connection.quit()
 ```
 
-Graceful SMTP session ending. The `QUIT` command is sent. `hadError` is `true`
-if the socket was closed due to a transmission error and `null` when was
-already closed.
+Graceful SMTP session ending. The `QUIT` command is sent.
 
 ### close
 
 ```js
-const hadError = await connection.close()
+await connection.close()
 ```
 
 Disconnecting of SMTP session.
