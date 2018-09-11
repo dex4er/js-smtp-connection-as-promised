@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.0.1 2018-09-11
+
+* Newer typings for `nodemailer` are used.
+
 ## v4.0.0 2018-09-10
 
 * Rewritten in Typescript.

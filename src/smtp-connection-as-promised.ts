@@ -91,8 +91,7 @@ export class SMTPConnectionAsPromised {
       this.connection.once('end', endHandler)
       this.connection.once('error', errorHandler)
 
-      // TODO: wait for https://github.com/DefinitelyTyped/DefinitelyTyped/pull/28747/
-      this.connection.send(envelope, message as any, (err: Error | null, info: SMTPConnection.SentMessageInfo) => {
+      this.connection.send(envelope, message, (err: Error | null, info: SMTPConnection.SentMessageInfo) => {
         this.connection.removeListener('end', endHandler)
         this.connection.removeListener('error', errorHandler)
         if (err) reject(err)
