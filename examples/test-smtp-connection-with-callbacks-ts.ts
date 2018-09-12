@@ -1,9 +1,8 @@
-'use strict'
 
-const fs = require('fs')
-const MailComposer = require('nodemailer/lib/mail-composer')
+import fs from 'fs'
 
-const SMTPConnection = require('nodemailer/lib/smtp-connection')
+import MailComposer from 'nodemailer/lib/mail-composer'
+import SMTPConnection from 'nodemailer/lib/smtp-connection'
 
 // Usage: node test-smtp-client.js host=localhost port=25 ignoreTLS=true user=u pass=p from=a@example.com to=b@example.net data=-
 const defaultOptions = {
@@ -28,15 +27,15 @@ connection.on('error', console.error)
 
 connection.connect(user && pass ? doLogin : doSend)
 
-function doLogin (err) {
+function doLogin (err?: SMTPConnection.SMTPError): void {
   if (err) {
     doClose(err)
   } else {
-    connection.login({ user, pass }, doSend)
+    connection.login({ user, pass }, doSend as any) // TODO: wait for new typings
   }
 }
 
-function doSend (err) {
+function doSend (err?: SMTPConnection.SMTPError): void {
   if (err) {
     doClose(err)
   } else {
@@ -44,7 +43,7 @@ function doSend (err) {
   }
 }
 
-function doQuit (err, info) {
+function doQuit (err: SMTPConnection.SMTPError | null, info: SMTPConnection.SentMessageInfo): void {
   if (err) {
     doClose(err)
   } else {
@@ -53,7 +52,7 @@ function doQuit (err, info) {
   }
 }
 
-function doClose (err) {
+function doClose (err: SMTPConnection.SMTPError): void {
   if (err) {
     console.error(err)
   }

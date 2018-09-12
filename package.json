@@ -1,6 +1,6 @@
 {
   "name": "smtp-connection-as-promised",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "smtp-connection as promised",
   "main": "lib/smtp-connection-as-promised.js",
   "typings": "lib/smtp-connection-as-promised.d.ts",

@@ -1,7 +1,8 @@
 # Changelog
 
-## v4.0.1 2018-09-11
+## v4.1.0 2018-09-12
 
+* Response message is always printable US-ASCII.
 * Newer typings for `nodemailer` are used.
 
 ## v4.0.0 2018-09-10
