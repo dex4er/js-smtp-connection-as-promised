@@ -3,6 +3,7 @@
 ## v4.1.0 2018-09-12
 
 * Response message is always printable US-ASCII.
+* Reject promises if connection is already ended.
 * Newer typings for `nodemailer` are used.
 
 ## v4.0.0 2018-09-10

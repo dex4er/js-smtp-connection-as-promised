@@ -27,9 +27,13 @@ export class SMTPConnectionAsPromised {
 
   connect (): Promise<void> {
     return new Promise((resolve, reject) => {
+      if (this.ended) {
+        return reject(new Error('Cannot connect - SMTP connection is already ended.'))
+      }
+
       const endHandler = () => {
         this.connection.removeListener('error', errorHandler)
-        reject(new Error('Cannot connect - smtp connection is already ended.'))
+        reject(new Error('Cannot connect - SMTP connection is already ended.'))
       }
 
       const errorHandler = (err: SMTPError) => {
@@ -68,8 +72,12 @@ export class SMTPConnectionAsPromised {
 
   login (auth: SMTPConnectionAuthenticationCredentials | SMTPConnectionAuthenticationOAuth2 | SMTPConnectionCredentials): Promise<void> {
     return new Promise((resolve, reject) => {
+      if (this.ended) {
+        return reject(new Error('Cannot login - SMTP connection is already ended.'))
+      }
+
       const endHandler = () => {
-        reject(new Error('Cannot login - smtp connection is already ended.'))
+        reject(new Error('Cannot login - SMTP connection is already ended.'))
       }
 
       this.connection.once('end', endHandler)
@@ -84,9 +92,13 @@ export class SMTPConnectionAsPromised {
 
   send (envelope: SMTPConnectionEnvelope, message: string | Buffer | Readable): Promise<SMTPConnectionSentMessageInfo> {
     return new Promise((resolve, reject) => {
+      if (this.ended) {
+        return reject(new Error('Cannot send - SMTP connection is already ended.'))
+      }
+
       const endHandler = () => {
         this.connection.removeListener('error', errorHandler)
-        reject(new Error('Cannot send - smtp connection is already ended.'))
+        reject(new Error('Cannot send - SMTP connection is already ended.'))
       }
 
       const errorHandler = (err: SMTPError) => {
@@ -106,6 +118,34 @@ export class SMTPConnectionAsPromised {
           info.response = this.printableAscii(info.response)
           resolve(info)
         }
+      })
+    })
+  }
+
+  reset (): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (this.ended) {
+        return reject(new Error('Cannot reset - SMTP connection is already ended.'))
+      }
+
+      const endHandler = () => {
+        this.connection.removeListener('error', errorHandler)
+        reject(new Error('Cannot reset - SMTP connection is already ended.'))
+      }
+
+      const errorHandler = (err: SMTPError) => {
+        this.connection.removeListener('end', endHandler)
+        reject(this.printableAsciiError(err))
+      }
+
+      this.connection.once('end', endHandler)
+      this.connection.once('error', errorHandler)
+
+      this.connection.reset((err?: SMTPError | null) => {
+        this.connection.removeListener('end', endHandler)
+        this.connection.removeListener('error', errorHandler)
+        if (err) reject(this.printableAsciiError(err))
+        else resolve()
       })
     })
   }
@@ -141,30 +181,6 @@ export class SMTPConnectionAsPromised {
       } else {
         resolve()
       }
-    })
-  }
-
-  reset (): Promise<void> {
-    return new Promise((resolve, reject) => {
-      const endHandler = () => {
-        this.connection.removeListener('error', errorHandler)
-        reject(new Error('Cannot reset - smtp connection is already ended.'))
-      }
-
-      const errorHandler = (err: SMTPError) => {
-        this.connection.removeListener('end', endHandler)
-        reject(this.printableAsciiError(err))
-      }
-
-      this.connection.once('end', endHandler)
-      this.connection.once('error', errorHandler)
-
-      this.connection.reset((err?: SMTPError | null) => {
-        this.connection.removeListener('end', endHandler)
-        this.connection.removeListener('error', errorHandler)
-        if (err) reject(this.printableAsciiError(err))
-        else resolve()
-      })
     })
   }
 
