@@ -32,7 +32,7 @@ function doLogin (err?: SMTPConnection.SMTPError): void {
   if (err) {
     doClose(err)
   } else {
-    connection.login({ user, pass }, doSend as any) // TODO: wait for new typings
+    connection.login({ user, pass }, doSend)
   }
 }
 
