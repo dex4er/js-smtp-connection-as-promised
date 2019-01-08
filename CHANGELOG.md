@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.1.2 2019-01-08
+
+* Uses nodemailer@5.0.0
+
 ## v4.1.1 2018-09-14
 
 * Newer typings for `nodemailer` are used.
