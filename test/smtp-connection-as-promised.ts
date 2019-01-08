@@ -20,11 +20,13 @@ Feature('Test smtp-connection-as-promised module', () => {
     'Test' + crlf +
     '.' + crlf
 
-  async function onAuth (auth: SMTPServerAuthentication, _session: SMTPServerSession): Promise<SMTPServerAuthenticationResponse> {
-    if (auth.method === 'PLAIN' && auth.username === user && auth.password === pass) {
-      return { user: auth.username }
-    } else {
-      throw new Error('Invalid username or password')
+  class MySMTPServerAsPromised extends SMTPServerAsPromised {
+    async onAuth (auth: SMTPServerAuthentication, _session: SMTPServerSession): Promise<SMTPServerAuthenticationResponse> {
+      if (auth.method === 'PLAIN' && auth.username === user && auth.password === pass) {
+        return { user: auth.username }
+      } else {
+        throw new Error('Invalid username or password')
+      }
     }
   }
 
@@ -36,9 +38,8 @@ Feature('Test smtp-connection-as-promised module', () => {
     let server: SMTPServerAsPromised
 
     Given('SMTPServerAsPromised object', () => {
-      server = new SMTPServerAsPromised({
-        hideSTARTTLS: true,
-        onAuth
+      server = new MySMTPServerAsPromised({
+        hideSTARTTLS: true
       })
     })
 
