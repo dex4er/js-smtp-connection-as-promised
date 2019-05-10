@@ -1,6 +1,9 @@
 *-ts.js
 
 *.gz
+*.lock
+*.log
+*.out
 *.tgz
 
 ts-node-*
@@ -17,9 +20,10 @@ ts-node-*
 /.tags
 /.tern-project
 
+.DS_Store
 /package-lock.json
 /yarn.lock
-/yarn-error.log
 
+.DS_Store
 /.idea
 /.vscode

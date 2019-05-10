@@ -9,18 +9,27 @@ import SMTPConnection from 'nodemailer/lib/smtp-connection'
 const defaultOptions = {
   opportunisticTLS: true,
   from: 'sender@example.com',
-  to: 'recpient@example.net'
+  to: 'recpient@example.net',
 }
-const userOptions = Object.assign({}, ...process.argv.slice(2).map((a) => a.split('=')).map(([k, v]) => ({ [k]: v })))
+const userOptions = Object.assign(
+  {},
+  ...process.argv
+    .slice(2)
+    .map(a => a.split('='))
+    .map(([k, v]) => ({[k]: v})),
+)
 
-const options = { ...defaultOptions, ...userOptions }
-const { from, to, user, pass } = options
+const options = {...defaultOptions, ...userOptions}
+const {from, to, user, pass} = options
 
-const message = options.data === '-' ? process.stdin
-  : !options.data ? new MailComposer({ from, to }).compile().createReadStream()
+const message =
+  options.data === '-'
+    ? process.stdin
+    : !options.data
+    ? new MailComposer({from, to}).compile().createReadStream()
     : fs.readFileSync(options.data)
 
-const envelope = { from, to: [to] }
+const envelope = {from, to: [to]}
 
 const connection = new SMTPConnection(options)
 
@@ -28,15 +37,15 @@ connection.on('error', console.error)
 
 connection.connect(user && pass ? doLogin : doSend)
 
-function doLogin (err?: SMTPConnection.SMTPError): void {
+function doLogin(err?: SMTPConnection.SMTPError): void {
   if (err) {
     doClose(err)
   } else {
-    connection.login({ user, pass }, doSend)
+    connection.login({user, pass}, doSend)
   }
 }
 
-function doSend (err?: SMTPConnection.SMTPError): void {
+function doSend(err?: SMTPConnection.SMTPError): void {
   if (err) {
     doClose(err)
   } else {
@@ -44,7 +53,7 @@ function doSend (err?: SMTPConnection.SMTPError): void {
   }
 }
 
-function doQuit (err: SMTPConnection.SMTPError | null, info: SMTPConnection.SentMessageInfo): void {
+function doQuit(err: SMTPConnection.SMTPError | null, info: SMTPConnection.SentMessageInfo): void {
   if (err) {
     doClose(err)
   } else {
@@ -53,7 +62,7 @@ function doQuit (err: SMTPConnection.SMTPError | null, info: SMTPConnection.Sent
   }
 }
 
-function doClose (err: SMTPConnection.SMTPError): void {
+function doClose(err: SMTPConnection.SMTPError): void {
   if (err) {
     console.error(err)
   }

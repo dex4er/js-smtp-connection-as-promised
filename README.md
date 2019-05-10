@@ -1,7 +1,9 @@
 # smtp-connection-as-promised
 
 <!-- markdownlint-disable MD013 -->
+
 [![Build Status](https://secure.travis-ci.org/dex4er/js-smtp-connection-as-promised.svg)](http://travis-ci.org/dex4er/js-smtp-connection-as-promised) [![Coverage Status](https://coveralls.io/repos/github/dex4er/js-smtp-connection-as-promised/badge.svg)](https://coveralls.io/github/dex4er/js-smtp-connection-as-promised) [![npm](https://img.shields.io/npm/v/smtp-connection-as-promised.svg)](https://www.npmjs.com/package/smtp-connection-as-promised)
+
 <!-- markdownlint-enable MD013 -->
 
 This module provides promisified version of `smtp-connection` from
@@ -31,17 +33,21 @@ Transpiling this module with own settings in `tsconfig.json`:
 ```json
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "esModuleInterop": true,
     "paths": {
       "smtp-connection-as-promised": ["node_modules/smtp-connection-as-promised/src/smtp-connection-as-promised"]
-    }
-  }
+    },
+    "strict": true
+  },
+  "include": ["*.ts", "node_modules/smtp-connection-as-promised/src/*.ts"]
 }
 ```
 
 ## Usage
 
 ```js
-const { SMTPConnectionAsPromised } = require('smtp-connection-as-promised')
+const {SMTPConnectionAsPromised} = require('smtp-connection-as-promised')
 ```
 
 _Typescript:_
@@ -65,7 +71,7 @@ _Example:_
 const connection = new SMTPConnectionAsPromised({
   opportunisticTLS: true,
   host: 'smtp.example.com',
-  port: 25
+  port: 25,
 })
 ```
 
@@ -94,7 +100,7 @@ _Example:_
 ```js
 await connection.login({
   user: 'from@example.com',
-  pass: 'secret'
+  pass: 'secret',
 })
 ```
 
@@ -111,10 +117,12 @@ _Example:_
 ```js
 const envelope = {
   from: 'from@example.com',
-  to: 'to@example.net'
+  to: 'to@example.net',
 }
 
-const message = '' +
+// prettier-ignore
+const message =
+  '' +
   'From: from@example.com\n' +
   'To: to@example.net\n' +
   'Subject: test\n' +

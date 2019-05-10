@@ -2,7 +2,7 @@
 /// <reference types="nodemailer" />
 
 import SMTPConnection from 'nodemailer/lib/smtp-connection'
-import { Readable } from 'stream'
+import {Readable} from 'stream'
 
 export interface SMTPError extends SMTPConnection.SMTPError {}
 
@@ -21,11 +21,11 @@ export class SMTPConnectionAsPromised {
   protected ended?: boolean
   protected endHandler?: () => void
 
-  constructor (options: SMTPConnectionAsPromisedOptions) {
+  constructor(options: SMTPConnectionAsPromisedOptions) {
     this.connection = new SMTPConnection(options)
   }
 
-  connect (): Promise<void> {
+  connect(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (this.ended) {
         return reject(new Error('Cannot connect - SMTP connection is already ended.'))
@@ -70,7 +70,9 @@ export class SMTPConnectionAsPromised {
     })
   }
 
-  login (auth: SMTPConnectionAuthenticationCredentials | SMTPConnectionAuthenticationOAuth2 | SMTPConnectionCredentials): Promise<void> {
+  login(
+    auth: SMTPConnectionAuthenticationCredentials | SMTPConnectionAuthenticationOAuth2 | SMTPConnectionCredentials,
+  ): Promise<void> {
     return new Promise((resolve, reject) => {
       if (this.ended) {
         return reject(new Error('Cannot login - SMTP connection is already ended.'))
@@ -82,7 +84,7 @@ export class SMTPConnectionAsPromised {
 
       this.connection.once('end', endHandler)
 
-      this.connection.login(auth, (err) => {
+      this.connection.login(auth, err => {
         this.connection.removeListener('end', endHandler)
         if (err) reject(this.printableAsciiError(err))
         else resolve()
@@ -90,7 +92,7 @@ export class SMTPConnectionAsPromised {
     })
   }
 
-  send (envelope: SMTPConnectionEnvelope, message: string | Buffer | Readable): Promise<SMTPConnectionSentMessageInfo> {
+  send(envelope: SMTPConnectionEnvelope, message: string | Buffer | Readable): Promise<SMTPConnectionSentMessageInfo> {
     return new Promise((resolve, reject) => {
       if (this.ended) {
         return reject(new Error('Cannot send - SMTP connection is already ended.'))
@@ -122,7 +124,7 @@ export class SMTPConnectionAsPromised {
     })
   }
 
-  reset (): Promise<void> {
+  reset(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (this.ended) {
         return reject(new Error('Cannot reset - SMTP connection is already ended.'))
@@ -150,8 +152,8 @@ export class SMTPConnectionAsPromised {
     })
   }
 
-  quit (): Promise<void> {
-    return new Promise((resolve) => {
+  quit(): Promise<void> {
+    return new Promise(resolve => {
       const socket = this.connection._socket
       if (this.connection && !this.ended) {
         if (socket && !socket.destroyed) {
@@ -167,8 +169,8 @@ export class SMTPConnectionAsPromised {
     })
   }
 
-  close (): Promise<void> {
-    return new Promise((resolve) => {
+  close(): Promise<void> {
+    return new Promise(resolve => {
       const socket = this.connection._socket
       if (this.connection && !this.ended) {
         if (socket && !socket.destroyed) {
@@ -184,7 +186,7 @@ export class SMTPConnectionAsPromised {
     })
   }
 
-  destroy (): Promise<void> {
+  destroy(): Promise<void> {
     const cleanup = () => {
       this.ended = true
       if (this.endHandler) {
@@ -200,11 +202,13 @@ export class SMTPConnectionAsPromised {
     }
   }
 
-  protected printableAscii (message: string): string {
-    return Buffer.from(message).toString().replace(/[^\x20-\x7E]/g, '?')
+  protected printableAscii(message: string): string {
+    return Buffer.from(message)
+      .toString()
+      .replace(/[^\x20-\x7E]/g, '?')
   }
 
-  protected printableAsciiError (error: SMTPError): SMTPError {
+  protected printableAsciiError(error: SMTPError): SMTPError {
     if (error) {
       if (error.message) {
         error.message = this.printableAscii(error.message)
