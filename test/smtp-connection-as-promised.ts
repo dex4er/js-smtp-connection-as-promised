@@ -1,7 +1,4 @@
-import chai, {expect} from "chai"
-
-import chaiAsPromised from "chai-as-promised"
-chai.use(chaiAsPromised)
+import {expect} from "chai"
 
 import {After, And, Feature, Given, Scenario, Then, When} from "./lib/steps"
 
@@ -50,7 +47,6 @@ Feature("Test smtp-connection-as-promised module", () => {
     let address: SMTPServerAsPromisedServerAddress
     let client: SMTPConnectionAsPromised
     let info: SMTPConnectionSentMessageInfo
-    let promise: Promise<any>
     let server: SMTPServerAsPromised
 
     Given("SMTPServerAsPromised object", () => {
@@ -77,27 +73,19 @@ Feature("Test smtp-connection-as-promised module", () => {
       })
     })
 
-    And("I connect to the server", () => {
-      promise = client.connect()
+    And("I connect to the server", async () => {
+      await client.connect()
     })
 
-    Then("promise for connect method is fulfilled", async () => {
-      await expect(promise).to.be.fulfilled
+    And("I login to the server", async () => {
+      await client.login({user, pass})
     })
 
-    When("I login to the server", () => {
-      promise = client.login({user, pass})
-    })
-
-    Then("promise for login method is fulfilled", async () => {
-      await expect(promise).to.be.fulfilled
-    })
-
-    When("I send the message envelope and body", async () => {
+    And("I send the message envelope and body", async () => {
       info = await client.send({from, to}, rfc2822Message)
     })
 
-    Then("promise for send method is fulfilled", () => {
+    Then("response is correct", () => {
       expect(info)
         .to.have.property("accepted")
         .that.deep.equals(["recipient@example.net"])
@@ -109,28 +97,20 @@ Feature("Test smtp-connection-as-promised module", () => {
         .that.equals("250 OK: message queued")
     })
 
-    When("I reset the SMTP session", () => {
-      promise = client.reset()
+    When("I reset the SMTP session", async () => {
+      await client.reset()
     })
 
-    Then("promise for quit method is fulfilled", async () => {
-      await expect(promise).to.be.fulfilled
+    And("I quit the SMTP session", async () => {
+      await client.quit()
     })
 
-    When("I quit the SMTP session", () => {
-      promise = client.quit()
+    And("I close the SMTP session", async () => {
+      await client.close()
     })
 
-    Then("promise for quit method is fulfilled", async () => {
-      await expect(promise).to.be.fulfilled
-    })
-
-    When("I close the SMTP session", () => {
-      promise = client.close()
-    })
-
-    Then("promise for quit method is fulfilled", async () => {
-      await expect(promise).to.be.fulfilled
+    Then("SMTP session is ended", async () => {
+      // nothing
     })
 
     After(async () => {
