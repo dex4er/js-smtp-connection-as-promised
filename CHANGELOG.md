@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.2.1 2019-06-04
+
+- Minor tweaks in README.
+- Added source map to the package.
+- Uses nodemailer@6.2.1.
+
 ## v4.2.0 2019-05-10
 
 - Uses nodemailer@6.1.1

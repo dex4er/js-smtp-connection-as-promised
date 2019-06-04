@@ -28,22 +28,6 @@ _Additionally for Typescript:_
 npm install smtp-connection-as-promised @types/node @types/nodemailer
 ```
 
-Transpiling this module with own settings in `tsconfig.json`:
-
-```json
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "esModuleInterop": true,
-    "paths": {
-      "smtp-connection-as-promised": ["node_modules/smtp-connection-as-promised/src/smtp-connection-as-promised"]
-    },
-    "strict": true
-  },
-  "include": ["*.ts", "node_modules/smtp-connection-as-promised/src/*.ts"]
-}
-```
-
 ## Usage
 
 ```js
@@ -54,6 +38,8 @@ _Typescript:_
 
 ```ts
 import SMTPConnectionAsPromised from "smtp-connection-as-promised"
+// or
+import {SMTPConnectionAsPromised} from "smtp-connection-as-promised"
 ```
 
 ### constructor
