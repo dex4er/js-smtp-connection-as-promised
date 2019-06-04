@@ -1,8 +1,9 @@
 # Changelog
 
-## v4.3.0 2019-06-04
+## v5.0.0 2019-06-04
 
 - Exposed property `ended` in public interface.
+- Previously `protected` methods are now `private static`.
 
 ## v4.2.1 2019-06-04
 

@@ -15,12 +15,30 @@ export interface SMTPConnectionEnvelope extends SMTPConnection.Envelope {}
 export interface SMTPConnectionSentMessageInfo extends SMTPConnection.SentMessageInfo {}
 
 export class SMTPConnectionAsPromised {
+  private static printableAscii(message: string): string {
+    return Buffer.from(message)
+      .toString()
+      .replace(/[^\x20-\x7E]/g, "?")
+  }
+
+  private static printableAsciiError(error: SMTPError): SMTPError {
+    if (error) {
+      if (error.message) {
+        error.message = SMTPConnectionAsPromised.printableAscii(error.message)
+      }
+      if (error.response) {
+        error.response = SMTPConnectionAsPromised.printableAscii(error.response)
+      }
+    }
+    return error
+  }
+
   connection: SMTPConnection
 
   ended?: boolean
   secure?: boolean
 
-  protected endHandler?: () => void
+  private endHandler?: () => void
 
   constructor(options: SMTPConnectionAsPromisedOptions) {
     this.connection = new SMTPConnection(options)
@@ -39,11 +57,10 @@ export class SMTPConnectionAsPromised {
 
       const errorHandler = (err: SMTPError) => {
         this.connection.removeListener("end", endHandler)
-        reject(this.printableAsciiError(err))
+        reject(SMTPConnectionAsPromised.printableAsciiError(err))
       }
 
       const connectHandler = (err?: SMTPError) => {
-        this.connection.removeListener("error", errorHandler)
         this.connection.removeListener("end", endHandler)
         this.connection.removeListener("error", errorHandler)
         if (err) {
@@ -54,9 +71,6 @@ export class SMTPConnectionAsPromised {
         }
       }
 
-      this.connection.once("end", endHandler)
-      this.connection.once("error", errorHandler)
-
       if (!this.endHandler) {
         this.ended = false
 
@@ -66,6 +80,9 @@ export class SMTPConnectionAsPromised {
 
         this.connection.once("end", this.endHandler)
       }
+
+      this.connection.once("end", endHandler)
+      this.connection.once("error", errorHandler)
 
       this.connection.connect(connectHandler)
     })
@@ -87,7 +104,7 @@ export class SMTPConnectionAsPromised {
 
       this.connection.login(auth, err => {
         this.connection.removeListener("end", endHandler)
-        if (err) reject(this.printableAsciiError(err))
+        if (err) reject(SMTPConnectionAsPromised.printableAsciiError(err))
         else resolve()
       })
     })
@@ -106,7 +123,7 @@ export class SMTPConnectionAsPromised {
 
       const errorHandler = (err: SMTPError) => {
         this.connection.removeListener("end", endHandler)
-        reject(this.printableAsciiError(err))
+        reject(SMTPConnectionAsPromised.printableAsciiError(err))
       }
 
       this.connection.once("end", endHandler)
@@ -116,9 +133,9 @@ export class SMTPConnectionAsPromised {
         this.connection.removeListener("end", endHandler)
         this.connection.removeListener("error", errorHandler)
         if (err) {
-          reject(this.printableAsciiError(err))
+          reject(SMTPConnectionAsPromised.printableAsciiError(err))
         } else {
-          info.response = this.printableAscii(info.response)
+          info.response = SMTPConnectionAsPromised.printableAscii(info.response)
           resolve(info)
         }
       })
@@ -138,7 +155,7 @@ export class SMTPConnectionAsPromised {
 
       const errorHandler = (err: SMTPError) => {
         this.connection.removeListener("end", endHandler)
-        reject(this.printableAsciiError(err))
+        reject(SMTPConnectionAsPromised.printableAsciiError(err))
       }
 
       this.connection.once("end", endHandler)
@@ -147,7 +164,7 @@ export class SMTPConnectionAsPromised {
       this.connection.reset((err?: SMTPError | null) => {
         this.connection.removeListener("end", endHandler)
         this.connection.removeListener("error", errorHandler)
-        if (err) reject(this.printableAsciiError(err))
+        if (err) reject(SMTPConnectionAsPromised.printableAsciiError(err))
         else resolve()
       })
     })
@@ -195,30 +212,13 @@ export class SMTPConnectionAsPromised {
         this.endHandler = undefined
       }
     }
+
     if (!this.ended) {
       return this.close().then(() => cleanup())
     } else {
       cleanup()
       return Promise.resolve()
     }
-  }
-
-  protected printableAscii(message: string): string {
-    return Buffer.from(message)
-      .toString()
-      .replace(/[^\x20-\x7E]/g, "?")
-  }
-
-  protected printableAsciiError(error: SMTPError): SMTPError {
-    if (error) {
-      if (error.message) {
-        error.message = this.printableAscii(error.message)
-      }
-      if (error.response) {
-        error.response = this.printableAscii(error.response)
-      }
-    }
-    return error
   }
 }
 
