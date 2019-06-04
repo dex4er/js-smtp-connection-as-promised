@@ -25,7 +25,7 @@ npm install smtp-connection-as-promised
 _Additionally for Typescript:_
 
 ```shell
-npm install smtp-connection-as-promised @types/node @types/nodemailer
+npm install @types/node @types/nodemailer
 ```
 
 ## Usage
