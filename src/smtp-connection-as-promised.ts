@@ -16,9 +16,10 @@ export interface SMTPConnectionSentMessageInfo extends SMTPConnection.SentMessag
 
 export class SMTPConnectionAsPromised {
   connection: SMTPConnection
+
+  ended?: boolean
   secure?: boolean
 
-  protected ended?: boolean
   protected endHandler?: () => void
 
   constructor(options: SMTPConnectionAsPromisedOptions) {

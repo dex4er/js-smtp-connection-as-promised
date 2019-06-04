@@ -1,4 +1,7 @@
-import {expect} from "chai"
+import chai, {expect} from "chai"
+
+import dirtyChai from "dirty-chai"
+chai.use(dirtyChai)
 
 import {After, And, Feature, Given, Scenario, Then, When} from "./lib/steps"
 
@@ -97,6 +100,10 @@ Feature("Test smtp-connection-as-promised module", () => {
         .that.equals("250 OK: message queued")
     })
 
+    And("SMTP session is not ended", async () => {
+      expect(client.ended).to.be.false()
+    })
+
     When("I reset the SMTP session", async () => {
       await client.reset()
     })
@@ -110,7 +117,7 @@ Feature("Test smtp-connection-as-promised module", () => {
     })
 
     Then("SMTP session is ended", async () => {
-      // nothing
+      expect(client.ended).to.be.true()
     })
 
     After(async () => {

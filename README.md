@@ -61,6 +61,14 @@ const connection = new SMTPConnectionAsPromised({
 })
 ```
 
+### ended
+
+```js
+const isEnded = connection.ended
+```
+
+It is `true` if connection is already ended.
+
 ### connect
 
 ```js

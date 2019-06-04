@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.3.0 2019-06-04
+
+- Exposed property `ended` in public interface.
+
 ## v4.2.1 2019-06-04
 
 - Minor tweaks in README.
