@@ -69,6 +69,14 @@ const isEnded = connection.ended
 
 It is `true` if connection is already ended.
 
+### secure
+
+```js
+const isSecure = connection.secure
+```
+
+It is `true` if connection uses TLS.
+
 ### connect
 
 ```js
