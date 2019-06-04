@@ -1,1 +1,1 @@
-module.exports = require('./lib/smtp-connection-as-promised')
+module.exports = require("./lib/smtp-connection-as-promised")

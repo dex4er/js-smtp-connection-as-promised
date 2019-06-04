@@ -47,13 +47,13 @@ Transpiling this module with own settings in `tsconfig.json`:
 ## Usage
 
 ```js
-const {SMTPConnectionAsPromised} = require('smtp-connection-as-promised')
+const {SMTPConnectionAsPromised} = require("smtp-connection-as-promised")
 ```
 
 _Typescript:_
 
 ```ts
-import SMTPConnectionAsPromised from 'smtp-connection-as-promised'
+import SMTPConnectionAsPromised from "smtp-connection-as-promised"
 ```
 
 ### constructor
@@ -70,7 +70,7 @@ _Example:_
 ```js
 const connection = new SMTPConnectionAsPromised({
   opportunisticTLS: true,
-  host: 'smtp.example.com',
+  host: "smtp.example.com",
   port: 25,
 })
 ```
@@ -99,8 +99,8 @@ _Example:_
 
 ```js
 await connection.login({
-  user: 'from@example.com',
-  pass: 'secret',
+  user: "from@example.com",
+  pass: "secret",
 })
 ```
 
@@ -116,8 +116,8 @@ _Example:_
 
 ```js
 const envelope = {
-  from: 'from@example.com',
-  to: 'to@example.net',
+  from: "from@example.com",
+  to: "to@example.net",
 }
 
 // prettier-ignore

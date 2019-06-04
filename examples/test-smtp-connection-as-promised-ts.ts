@@ -1,13 +1,13 @@
 #!/usr/bin/env ts-node
 
-import fs from 'fs'
-import MailComposer from 'nodemailer/lib/mail-composer'
+import fs from "fs"
+import MailComposer from "nodemailer/lib/mail-composer"
 
 import {
   SMTPConnectionAsPromised,
   SMTPConnectionAsPromisedOptions,
   SMTPConnectionEnvelope,
-} from '../src/smtp-connection-as-promised'
+} from "../src/smtp-connection-as-promised"
 
 interface ArgvOptions {
   [key: string]: string
@@ -25,14 +25,14 @@ async function main(): Promise<void> {
   // Usage: node test-smtp-client.js host=localhost port=25 ignoreTLS=true user=u pass=p from=a@example.com to=b@example.net data=-
   const defaultOptions: Options = {
     opportunisticTLS: true,
-    from: 'sender@example.com',
-    to: 'recpient@example.net',
+    from: "sender@example.com",
+    to: "recpient@example.net",
   }
   const userOptions: ArgvOptions = Object.assign(
     {},
     ...process.argv
       .slice(2)
-      .map(a => a.split('='))
+      .map(a => a.split("="))
       .map(([k, v]) => ({[k]: v})),
   )
 
@@ -40,7 +40,7 @@ async function main(): Promise<void> {
   const {from, to, user, pass} = options
 
   const message =
-    options.data === '-'
+    options.data === "-"
       ? process.stdin
       : !options.data
       ? new MailComposer({from, to}).compile().createReadStream()
