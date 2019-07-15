@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.0.1 2019-07-15
+
+- Uses nodemailer@6.3.0.
+
 ## v5.0.0 2019-06-04
 
 - Exposed property `ended` in public interface.
