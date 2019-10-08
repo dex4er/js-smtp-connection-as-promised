@@ -29,7 +29,7 @@
     "@types/chai": "^4.2.3",
     "@types/dirty-chai": "^2.0.2",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.7.11",
+    "@types/node": "^12.7.12",
     "@types/nodemailer": "^6.2.1",
     "@types/smtp-server": "^3.5.2",
     "chai": "^4.2.0",
