@@ -22,7 +22,7 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "nodemailer": "github:nodemailer/nodemailer#29751e7c185e4ebab685d2bda11559b6cb8f3a5e",
+    "nodemailer": "github:nodemailer/nodemailer#901359ab92b38adfc14dc1757d791cf2de98117a",
     "tslib": "^1.10.0"
   },
   "bundledDependencies": [
