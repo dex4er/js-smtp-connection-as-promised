@@ -3,6 +3,8 @@
 ## v5.0.2 2019-10-07
 
 - Updated dependencies.
+- Uses nodemailer@6.3.1.
+- Uses `mocha-steps` for testing.
 
 ## v5.0.1 2019-07-15
 
