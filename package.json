@@ -22,9 +22,12 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "nodemailer": "^6.3.0",
+    "nodemailer": "github:nodemailer/nodemailer#29751e7c185e4ebab685d2bda11559b6cb8f3a5e",
     "tslib": "^1.10.0"
   },
+  "bundledDependencies": [
+    "nodemailer"
+  ],
   "devDependencies": {
     "@types/chai": "^4.2.3",
     "@types/dirty-chai": "^2.0.2",
