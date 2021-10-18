@@ -19,7 +19,7 @@
   },
   "homepage": "http://github.com/dex4er/js-smtp-connection-as-promised",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=v14.18.1"
   },
   "dependencies": {
     "nodemailer": "^6.3.1",
